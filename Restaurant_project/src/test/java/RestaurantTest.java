@@ -77,7 +77,7 @@ class RestaurantTest {
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
     //<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    //failed test cases.
+    //passing test cases.
     @Test
     public void select_item_by_name_should_throw_exception_when_item_does_not_exist_in_menu(){
         // Exception Error Case -> when customer input wrong item name

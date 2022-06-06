@@ -9,7 +9,7 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
-
+    private List<Item> selectedItemList = new ArrayList<Item>();
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
         this.location = location;
@@ -61,5 +61,27 @@ public class Restaurant {
         return name;
     }
     public String getLocation() {return location; }
+
+    // selectItemByName() -> Method will add menu items input by customer into ArrayList "selectedItemList",
+    //  in case no such item exist in menu then it throws exception
+    public void selectItemByName(String itemName) throws itemNotFoundException {
+        Item selectedItem = findItemByName(itemName);
+        if (selectedItem == null)
+            throw new itemNotFoundException(itemName);
+
+        selectedItemList.add(selectedItem);
+    }
+
+    // getselectedItemList() -> Method will return list (selectedItemList) of selected menu items by customer
+    public List<Item> getselectedItemList() { return selectedItemList; }
+
+    // returnOrderValue() -> Method will return cost of order by customer
+    public int returnOrderValue(List<Item> itemList) {
+        int totalCost = 0;
+        for(Item value : itemList) {
+            totalCost = totalCost + value.getPrice();
+        }
+        return totalCost;
+    }
 
 }
