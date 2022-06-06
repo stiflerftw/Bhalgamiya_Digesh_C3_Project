@@ -75,4 +75,28 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    //failed test cases.
+    @Test
+    public void select_item_by_name_should_throw_exception_when_item_does_not_exist_in_menu(){
+        // Exception Error Case -> when customer input wrong item name
+        assertThrows(itemNotFoundException.class,
+                ()->restaurant.selectItemByName("Samosa Chat"));
+    }
+
+    @Test
+    public void return_order_value_should_return_0_total_cost_when_customer_did_not_selected_any_item_from_menu(){
+        // When customer selected 0 item, total cost returned should be 0
+        assertEquals(0,restaurant.returnOrderValue(restaurant.getselectedItemList()));
+    }
+
+    @Test
+    public void return_order_value_should_return_correct_total_price_when_customer_select_the_items_from_menu() throws itemNotFoundException {
+        // When some item is selected by customer, total cost returned should be correct(in this case i.e. "388"),
+        restaurant.selectItemByName("Vegetable lasagne");
+        restaurant.selectItemByName("Sweet corn soup");
+        assertEquals(388,restaurant.returnOrderValue(restaurant.getselectedItemList()));
+    }
+    //<<<<<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
